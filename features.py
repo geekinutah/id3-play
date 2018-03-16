@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import re
-from nermal import letter2int
+from numeral import letter2int
 
 """
 Use this module to define features.
