@@ -1,9 +1,19 @@
 #!/usr/bin/env python
+import re
 
 """
 Use this module to define features.
 """
 
+def get_feature_list():
+    not_feature = re.compile('^_.*')
+    toreturn = []
+
+    for i in dir():
+        if not not_feature.match(i) and i != 'get_feature_list':
+            toreturn.append(i)
+
+    return toreturn
 def first_longer_than_last(name):
     pass
 
@@ -30,5 +40,4 @@ def last_name_begins_with_vowel(name):
 
 def vowels_greater_than_number(name, num_of_vowels):
     pass
-
 
