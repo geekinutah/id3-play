@@ -24,3 +24,5 @@ class id3_tree(Tree):
            * take representation of decision tree, build object
 
     '''
+    def __init__(self):
+        super(id3_tree, self).__init__()
