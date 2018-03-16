@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from treelib import Node, Tree
 
 def get_tree(data):
     '''
@@ -6,7 +7,7 @@ def get_tree(data):
     '''
     pass
 
-class id3_tree(object):
+class id3_tree(Tree):
     '''
        id3_tree should be able to output several things:
            * Show a trace of how decision tree was built
@@ -23,6 +24,3 @@ class id3_tree(object):
            * take representation of decision tree, build object
 
     '''
-    def __init__(self):
-        pass
-
