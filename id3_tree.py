@@ -107,32 +107,27 @@ def get_tree(data, feature_list):
     return root
 
 def get_entropy(feature, data):
-    yes = 0
-    no = 0
+    returns = {}
+    to_return = None;
     for k in data.keys():
         # If it classifies as true
-        if getattr(features, feature)(k):
-            if data[k]:
-                yes = yes + 1
-            else:
-                no = no + 1
+        r = getattr(features, feature)(k)
+        if r not in returns:
+            returns[r] = 1
+
+        returns[r] = returns[r] + 1
+
+    #Now we have n classiications, there will be k occurences of n in data
+    #We need to count all the different occurences of n and use the entropy formula
+    for i in returns:
+        avg = returns[i]/len(data)
+        ent = avg * math.log(avg,2)
+        if to_return is None:
+            to_return = ent
         else:
-        #If it classifies as false
-            pass
+            to_return = to_return - ent
 
-
-
-    avg_yes = float(yes) / (len(data))
-    avg_no = float(no) / (len(data))
-    #import pdb; pdb.set_trace()
-
-    if avg_yes == 0:
-        return abs(avg_no * math.log(avg_no,2) )
-
-    if avg_no == 0:
-        return abs(avg_yes * math.log(avg_yes,2) )
-
-    return abs( (avg_yes * math.log(avg_yes,2) ) - (avg_no * math.log(avg_no,2)) )
+    return abs(to_return)
 
 
 class id3_tree(object):
