@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from id3_tree import get_entropy
+from id3_tree import get_entropy, get_tree, id3_tree
 from pprint import pprint
 from prettytable import PrettyTable
 import features
@@ -28,12 +28,16 @@ def parse(filename):
     return to_return
 
 if __name__ == '__main__':
-    pprint("Finding Entropies")
     training_data = parse(training_file)
     x = PrettyTable()
     x.field_names = ['feature_name', 'entropy']
+    pprint("Finding Entropies")
+    from pprint import pprint;
 
     for f in features.get_feature_list():
         x.add_row([f, get_entropy(f, training_data)])
 
     print(x)
+    t = id3_tree(root=get_tree(training_data, features.get_feature_list()))
+
+    #t.traverse()
